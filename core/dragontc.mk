@@ -74,7 +74,7 @@ DISABLE_POLLY_arm := \
   libRS \
   libstagefright_mpeg2ts \
   bcc_strip_attr
-  
+
 DISABLE_POLLY_arm00 := \
   libpng \
   libLLVMCodeGen \
@@ -97,7 +97,7 @@ DISABLE_POLLY_arm00 := \
   bcc_strip_attr \
   libRSSupport \
   libstagefright_soft_gsmdec
-  
+
 DISABLE_POLLY_arm64 := \
   libpng \
   libfuse \
@@ -114,7 +114,7 @@ DISABLE_POLLY_arm64 := \
   libblas \
   libRS \
   libstagefright_mpeg2ts \
-  bcc_strip_attr 
+  bcc_strip_attr
 
 # Add version specific disables.
 ifeq (1,$(words $(filter 3.8 3.9,$(LLVM_PREBUILTS_VERSION))))
@@ -149,6 +149,11 @@ DISABLE_POLLY := \
   $(DISABLE_POLLY_$(TARGET_ARCH)) \
   $(DISABLE_DTC) \
   $(LOCAL_DISABLE_POLLY)
+
+# Include ARM Mode if requested
+ifeq ($(USE_ARM_MODE),true)
+  include $(BUILD_SYSTEM)/arm.mk
+endif
 
 # Enable DragonTC on current module if requested.
 ifeq (1,$(words $(filter $(ENABLE_DTC),$(LOCAL_MODULE))))
