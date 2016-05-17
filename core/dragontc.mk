@@ -38,7 +38,7 @@ else
 endif
 
 # Disable modules that don't work with DragonTC. Split up by arch.
-DISABLE_DTC_arm :=
+DISABLE_DTC_arm := v8_mksnapshot.arm libRSSupport
 DISABLE_DTC_arm64 := libm v8_mksnapshot.arm64
 
 # Set DISABLE_DTC based on arch
@@ -69,7 +69,16 @@ DISABLE_POLLY_arm := \
   libRS	\
   libRSDriver\
   libmedia \
-  libjni_latinime_common_static
+  libjni_latinime_common_static \
+  libmcldTarget \
+  libF77blasV8 \
+  libbccSupport \
+  libblas \
+  libstagefright_mpeg2ts \
+  bcc_strip_attr \
+  libRSSupport \
+  libstagefright_soft_gsmdec
+
 DISABLE_POLLY_arm64 := \
   libpng \
   libfuse \
@@ -90,6 +99,18 @@ DISABLE_POLLY_arm64 := \
 
 # Add version specific disables.
 ifeq (1,$(words $(filter 3.8 3.9,$(LLVM_PREBUILTS_VERSION))))
+  DISABLE_POLLY_arm += \
+	libLLVMAnalysis \
+	libLLVMCore \
+	libLLVMInstrumentation \
+	libLLVMipo \
+	libLLVMMC \
+	libLLVMTransformObjCARC \
+	libLLVMVectorize \
+	libgui \
+	libandroid_runtime \
+	libunwind_llvm \
+	libvixl
   DISABLE_POLLY_arm64 += \
 	libLLVMAnalysis \
 	libLLVMCore \
