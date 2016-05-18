@@ -38,7 +38,7 @@ else
 endif
 
 # Disable modules that don't work with DragonTC. Split up by arch.
-DISABLE_DTC_arm := v8_mksnapshot.arm
+DISABLE_DTC_arm := libpac
 DISABLE_DTC_arm00 := v8_mksnapshot.arm libRSSupport
 DISABLE_DTC_arm64 := libm v8_mksnapshot.arm64
 
@@ -73,7 +73,7 @@ DISABLE_POLLY_arm := \
   libblas \
   libRS \
   libstagefright_mpeg2ts \
-  bcc_strip_attr 
+  bcc_strip_attr
   
 DISABLE_POLLY_arm00 := \
   libpng \
