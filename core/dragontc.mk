@@ -38,8 +38,7 @@ else
 endif
 
 # Disable modules that don't work with DragonTC. Split up by arch.
-DISABLE_DTC_arm := libpac
-DISABLE_DTC_arm00 := v8_mksnapshot.arm libRSSupport
+DISABLE_DTC_arm := 
 DISABLE_DTC_arm64 := libm v8_mksnapshot.arm64
 
 # Set DISABLE_DTC based on arch
@@ -58,24 +57,6 @@ ENABLE_DTC := \
 
 # Disable modules that dont work with Polly. Split up by arch.
 DISABLE_POLLY_arm := \
-  libpng \
-  libfuse \
-  libLLVMAsmParser \
-  libLLVMBitReader \
-  libLLVMCodeGen \
-  libLLVMInstCombine \
-  libLLVMMCParser \
-  libLLVMSupport \
-  libLLVMSelectionDAG \
-  libLLVMTransformUtils \
-  libF77blas \
-  libbccSupport \
-  libblas \
-  libRS \
-  libstagefright_mpeg2ts \
-  bcc_strip_attr
-
-DISABLE_POLLY_arm00 := \
   libpng \
   libLLVMCodeGen \
   libLLVMARMCodeGen\
@@ -114,7 +95,7 @@ DISABLE_POLLY_arm64 := \
   libblas \
   libRS \
   libstagefright_mpeg2ts \
-  bcc_strip_attr
+  bcc_strip_attr 
 
 # Add version specific disables.
 ifeq (1,$(words $(filter 3.8 3.9,$(LLVM_PREBUILTS_VERSION))))
@@ -149,11 +130,6 @@ DISABLE_POLLY := \
   $(DISABLE_POLLY_$(TARGET_ARCH)) \
   $(DISABLE_DTC) \
   $(LOCAL_DISABLE_POLLY)
-
-# Include ARM Mode if requested
-ifeq ($(USE_ARM_MODE),true)
-  include $(BUILD_SYSTEM)/arm.mk
-endif
 
 # Enable DragonTC on current module if requested.
 ifeq (1,$(words $(filter $(ENABLE_DTC),$(LOCAL_MODULE))))
