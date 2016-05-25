@@ -107,7 +107,8 @@ DISABLE_POLLY_arm := \
   libxml2 \
   libc_freebsd \
   libc_tzcode \
-  libv8
+  libF77blasV8 \
+  libRSSupport
 DISABLE_POLLY_arm64 := \
   libpng \
   libfuse \

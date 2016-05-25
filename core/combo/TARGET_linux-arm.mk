@@ -35,7 +35,11 @@ TARGET_$(combo_2nd_arch_prefix)ARCH_VARIANT := armv5te
 endif
 
 # Decouple NDK library selection with platform compiler version
+ifeq ($(TARGET_NDK_VERSION_EXP),)
 $(combo_2nd_arch_prefix)TARGET_NDK_GCC_VERSION := 4.9
+else
+$(combo_2nd_arch_prefix)TARGET_NDK_GCC_VERSION := $(TARGET_NDK_VERSION_EXP)
+endif
 
 ifeq ($(strip $(TARGET_GCC_VERSION_EXP)),)
 $(combo_2nd_arch_prefix)TARGET_GCC_VERSION := 4.9
