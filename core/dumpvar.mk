@@ -72,6 +72,14 @@ $(info   TARGET_BUILD_TYPE=$(TARGET_BUILD_TYPE))
 $(info   TARGET_ARCH=$(TARGET_ARCH))
 $(info   TARGET_GCC_VERSION=$(TARGET_GCC_VERSION))
 $(info   TARGET_NDK_GCC_VERSION=$(TARGET_NDK_GCC_VERSION))
+ ifeq ($(TARGET_CLANG_VERSION_EXP),)
+ else
+  $(info   TARGET_CLANG_VERSION=$(TARGET_CLANG_VERSION_EXP))
+ endif
+  ifeq ($(TARGET_KERNEL_VERSION_EXP),)
+ else
+  $(info   TARGET_KERNEL_GCC_VERSION=$(TARGET_KERNEL_VERSION_EXP))
+ endif
 $(info   TARGET_ARCH_VARIANT=$(TARGET_ARCH_VARIANT))
 $(info   TARGET_CPU_VARIANT=$(TARGET_CPU_VARIANT))
 $(info   HOST_ARCH=$(HOST_ARCH))
@@ -82,3 +90,4 @@ $(info   BUILD_ID=$(BUILD_ID))
 $(info   OUT_DIR=$(OUT_DIR))
 $(info ============================================)
 endif
+
