@@ -2,6 +2,7 @@ function hmm() {
 cat <<EOF
 Invoke ". build/envsetup.sh" from your shell to add the following functions to your environment:
 - lunch:   lunch <product_name>-<build_variant>
+- plunch:  lunch and exec patchsetup.sh
 - tapas:   tapas [<App1> <App2> ...] [arm|x86|mips|armv5|arm64|x86_64|mips64] [eng|userdebug|user]
 - croot:   Changes directory to the top of the tree.
 - cout:    Changes directory to out.
@@ -253,6 +254,20 @@ for f in `test -d device && find -L device/*/$DU_BUILD -maxdepth 4 -name 'patchs
 do
     echo "Patching device-tree -> $f"
     . $f
+    export PATCHSTATUS=true
+    export PATCHMODE=false
+done
+
+unset f
+}
+
+function patchvendortree()
+{
+for f in `find -L vendor/extra -maxdepth 4 -name 'patch.sh' 2> /dev/null`
+do
+    echo "Patching vendor-tree -> $f"
+    . $f
+    export PATCHSTATUSVENDOR=true
 done
 
 unset f
@@ -264,8 +279,10 @@ function set_stuff_for_environment()
     set_java_home
     setpaths
     set_sequence_number
+    patchvendortree
+    if [ "$PATCHMODE" = "true" ]; then
     patchdevicetree
-
+    fi
     export ANDROID_BUILD_TOP=$(gettop)
     # With this environment variable new GCC can apply colors to warnings/errors
     export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
@@ -555,6 +572,11 @@ function breakfast()
 
 alias bib=breakfast
 
+function plunch()
+{
+	export PATCHMODE=true
+	lunch
+}
 function lunch()
 {
     local answer
