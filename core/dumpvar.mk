@@ -106,5 +106,6 @@ $(info   HOST_BUILD_TYPE=$(HOST_BUILD_TYPE))
 $(info   BUILD_ID=$(BUILD_ID))
 $(info   OUT_DIR=$(OUT_DIR))
 $(info ============================================)
+$(info   PATCHSTATUS=$(PATCHSTATUS))
 endif
 
