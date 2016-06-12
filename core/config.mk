@@ -230,7 +230,9 @@ ifeq ($(TARGET_CPU_ABI),)
   $(error No TARGET_CPU_ABI defined by board config: $(board_config_mk))
 endif
 TARGET_CPU_ABI2 := $(strip $(TARGET_CPU_ABI2))
-include vendor/extra/configs/uber.mk
+
+# Add custom toolchain configuration
+include vendor/extra/configs/toolchains.mk
 
 # $(1): os/arch
 define select-android-config-h
