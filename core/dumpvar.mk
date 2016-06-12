@@ -61,7 +61,6 @@ endif
 
 endif # CALLED_FROM_SETUP
 
-
 ifneq ($(PRINT_BUILD_CONFIG),)
 HOST_OS_EXTRA:=$(shell python -c "import platform; print(platform.platform())")
 $(info ============================================)
@@ -99,6 +98,24 @@ ifeq ($(TARGET_DRAGONTC_VERSION),)
 else
 $(info   TARGET_CLANG_VERSION=$(DTC_VER))
 endif
+
+# GCC Optimization info
+ifeq ($(GCC_OPTIMIZATION_LEVELS),)
+else
+$(info   TARGET_GCC_OPT=$(GCC_OPTIMIZATION_LEVELS))
+endif
+
+# Audio Mod info
+ifeq ($(VIPER_AUDIO_MOD),)
+else
+$(info   VIPER_AUDIO_MOD=$(VIPER_AUDIO_MOD))
+endif
+
+# Kernel LLCON info
+ifeq ($(filter (androidboot.llcon%),$(BOARD_KERNEL_CMDLINE)),)
+$(info   KERNEL_LLCON=Enabled)
+endif
+
 $(info   HOST_ARCH=$(HOST_ARCH))
 $(info   HOST_OS=$(HOST_OS))
 $(info   HOST_OS_EXTRA=$(HOST_OS_EXTRA))
@@ -106,6 +123,4 @@ $(info   HOST_BUILD_TYPE=$(HOST_BUILD_TYPE))
 $(info   BUILD_ID=$(BUILD_ID))
 $(info   OUT_DIR=$(OUT_DIR))
 $(info ============================================)
-$(info   PATCHSTATUS=$(PATCHSTATUS))
 endif
-
