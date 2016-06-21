@@ -112,7 +112,7 @@ $(info   VIPER_AUDIO_MOD=$(VIPER_AUDIO_MOD))
 endif
 
 # Kernel LLCON info
-ifeq ($(filter (androidboot.llcon%),$(BOARD_KERNEL_CMDLINE)),)
+ifeq (1,$(words $(filter llcon,$(BOARD_KERNEL_CMDLINE))))
 $(info   KERNEL_LLCON=Enabled)
 endif
 
