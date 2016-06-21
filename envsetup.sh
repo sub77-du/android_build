@@ -2,7 +2,8 @@ function hmm() {
 cat <<EOF
 Invoke ". build/envsetup.sh" from your shell to add the following functions to your environment:
 - lunch:   lunch <product_name>-<build_variant>
-- plunch:  lunch and exec patchsetup.sh
+- plunch:  lunch and exec device patchsetup.sh
+- vlunch:  lunch and exec vendor patchsetup.sh
 - tapas:   tapas [<App1> <App2> ...] [arm|x86|mips|armv5|arm64|x86_64|mips64] [eng|userdebug|user]
 - croot:   Changes directory to the top of the tree.
 - cout:    Changes directory to out.
@@ -577,6 +578,13 @@ function plunch()
 	export PATCHMODE=true
 	lunch
 }
+
+function vlunch()
+{
+	export PATCHMODE=false
+	lunch
+}
+
 function lunch()
 {
     local answer
