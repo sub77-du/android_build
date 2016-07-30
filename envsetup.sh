@@ -280,8 +280,8 @@ function set_stuff_for_environment()
     set_java_home
     setpaths
     set_sequence_number
-    patchvendortree
     if [ "$PATCHMODE" = "true" ]; then
+    patchvendortree
     patchdevicetree
     fi
     export ANDROID_BUILD_TOP=$(gettop)
