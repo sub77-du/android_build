@@ -1,3 +1,7 @@
+export USE_CCACHE=1
+export CCACHE_DIR=~/.ccache-du
+prebuilts/misc/linux-x86/ccache/ccache -M 20G
+
 function hmm() {
 cat <<EOF
 Invoke ". build/envsetup.sh" from your shell to add the following functions to your environment:
